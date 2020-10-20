@@ -12,15 +12,15 @@ const App = () => {
   const [starships, setStarship] = useState(JSON.parse(localStorage.getItem("starships") || "[]"));
 
   useEffect(() => {
-    let nextPage = false;
-    while (nextPage === false) {
-      let page = 1;
-      fetch(`https://swapi.dev/api/starships/?page=${1}`)
-        .then(response => response.json)
-        .then(data => {
-          console.log(data)
-        });
-    }
+    // let nextPage = false;
+    // while (nextPage === false) {
+    //     let page = 1;
+    fetch(`https://swapi.dev/api/starships/?page=${1}`)
+      .then(response => response.json)
+      .then(data => {
+        console.log(data)
+      });
+    //   }
   }, []);
 
   return (

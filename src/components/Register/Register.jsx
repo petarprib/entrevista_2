@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import '../../index.css';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -56,8 +56,6 @@ const Register = () => {
             setUsernameError("");
             history.push("/");
         }
-
-        console.log(newExistingUsers);
     }
 
     return (

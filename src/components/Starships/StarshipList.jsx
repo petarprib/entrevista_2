@@ -1,13 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import StarshipItem from './StarshipItem';
 
-const StarshipList = (props) => {
-    const { loggedUser, starships } = props;
+const StarshipList = () => {
+    const [loggedUser] = useState(JSON.parse(localStorage.getItem("loggedUser")) || null);
+    const [starships, setStarships] = useState(JSON.parse(localStorage.getItem("starships") || "[]"));
+    const [nextPage, setNextPage] = useState("https://swapi.dev/api/starships/?page=1");
+
+    useEffect(() => {
+        fetchStarships(nextPage);
+    }, []);
+
+    useEffect(() => {
+        fetchStarships(nextPage);
+    }, [nextPage]);
+
+    const fetchStarships = (nextPage) => {
+        if (nextPage !== null) {
+            fetch(nextPage)
+                .then(response => response.json())
+                .then(data => {
+                    let newStarships = [...starships, ...data.results];
+                    setStarships(newStarships);
+                    setNextPage(data.next);
+                });
+        }
+    };
+
+    let starshipItems = starships.map((starship, i) => {
+        return (
+            <StarshipItem key={i} starship={starship} />
+        );
+    });
+
     if (!loggedUser) {
-        return <h1>LOG IN!</h1>
+        return <Redirect to="/login" />
     } else {
-
-        console.log(starships)
-        return <p>don't</p>
+        return (
+            <>
+                <h1>ijhdfgiohdjgf</h1>
+            </>
+        )
+        // if (nextPage === null) {
+        //     return (
+        //         <div>
+        //             {/* {starshipItems} */}
+        //             <h1>iodjfiogjdf</h1>
+        //         </div>
+        //     );
+        // }
     }
 }
 

@@ -8,32 +8,12 @@ import Login from './components/Login/Login.jsx';
 import StarshipList from './components/Starships/StarshipList.jsx';
 
 const App = () => {
-  const [loggedUser, setLoggedUser] = useState(JSON.parse(localStorage.getItem("loggedUser") || ""));
-  const [starships, setStarship] = useState(JSON.parse(localStorage.getItem("starships") || "[]"));
-
-  useEffect(() => {
-    // let nextPage = false;
-    // while (nextPage === false) {
-    //     let page = 1;
-    fetch(`https://swapi.dev/api/starships/?page=${1}`)
-      .then(response => response.json)
-      .then(data => {
-        console.log(data)
-      });
-    //   }
-  }, []);
-
   return (
     <Router>
       <Header />
       <Container>
         <Switch>
-          <Route path="/" exact component={() => (
-            <StarshipList
-              loggedUser={loggedUser}
-              starships={starships}
-            />
-          )} />
+          <Route path="/" exact component={StarshipList} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>

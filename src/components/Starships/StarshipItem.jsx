@@ -3,11 +3,11 @@ import React from 'react';
 const StarshipItem = (props) => {
     const { starship } = props;
 
-    console.log(starship.name)
+    // console.log(starship.name)
 
     return (
         <div>
-            <p>dfgdfgdf</p>
+            <p>{starship.name}</p>
         </div>
     );
 }

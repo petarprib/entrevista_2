@@ -4,51 +4,54 @@ import StarshipItem from './StarshipItem';
 
 const StarshipList = () => {
     const [loggedUser] = useState(JSON.parse(localStorage.getItem("loggedUser")) || null);
-    const [starships, setStarships] = useState(JSON.parse(localStorage.getItem("starships") || "[]"));
-    const [nextPage, setNextPage] = useState("https://swapi.dev/api/starships/?page=1");
+    const [starships, setStarships] = useState([]);
 
     useEffect(() => {
-        fetchStarships(nextPage);
+        getAll()
+            .then(something => setStarships(something))
+            .then(() => {
+                let starshipItems = starships.map((starship, i) => (
+                    // return (
+                    // <StarshipItem key={i} starship={starship} />
+                    // );
+                    console.log(starship)
+                ));
+            })
     }, []);
 
-    useEffect(() => {
-        fetchStarships(nextPage);
-    }, [nextPage]);
-
-    const fetchStarships = (nextPage) => {
-        if (nextPage !== null) {
-            fetch(nextPage)
-                .then(response => response.json())
-                .then(data => {
-                    let newStarships = [...starships, ...data.results];
-                    setStarships(newStarships);
-                    setNextPage(data.next);
-                });
+    let getAll = async () => {
+        let cont = true;
+        let page = 1;
+        let newStarships = [];
+        while (cont) {
+            const moreStarships = await fetch(`https://swapi.dev/api/starships/?page=${page}`)
+                .then(response => response.json());
+            page += 1;
+            newStarships = [...newStarships, ...moreStarships.results];
+            if (!moreStarships.next) cont = false;
         }
-    };
+        return newStarships;
+    }
 
-    let starshipItems = starships.map((starship, i) => {
-        return (
-            <StarshipItem key={i} starship={starship} />
-        );
-    });
+    // console.log(starships)
+
+    // let starshipItems = starships.map((starship, i) => (
+    //     // return (
+    //     // <StarshipItem key={i} starship={starship} />
+    //     // );
+    //     console.log(starship)
+    // ));
 
     if (!loggedUser) {
         return <Redirect to="/login" />
-    } else {
+    }
+    else {
         return (
-            <>
-                <h1>ijhdfgiohdjgf</h1>
-            </>
-        )
-        // if (nextPage === null) {
-        //     return (
-        //         <div>
-        //             {/* {starshipItems} */}
-        //             <h1>iodjfiogjdf</h1>
-        //         </div>
-        //     );
-        // }
+            <div>
+                <p>ioujhdfiguhdjfg</p>
+                {/* {starships && { starshipItems }} */}
+            </div>
+        );
     }
 }
 

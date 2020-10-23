@@ -12,15 +12,15 @@ const CharacterList = () => {
     let getCharacters = async () => {
         let cont = true;
         let page = 1;
-        let newCharacters = [];
+        let ret = [];
         while (cont) {
             const moreCharacters = await fetch(`https://swapi.dev/api/people/?page=${page}`)
                 .then(response => response.json());
             page += 1;
-            newCharacters = [...newCharacters, ...moreCharacters.results];
+            ret = [...ret, ...moreCharacters.results];
             if (!moreCharacters.next) cont = false;
         }
-        return newCharacters;
+        return ret;
     }
 
     let characterItems = characters.map((character, i) => (

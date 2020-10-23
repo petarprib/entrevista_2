@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 import { useHistory } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,7 +17,7 @@ const Login = () => {
     let handleSubmit = (e) => {
         e.preventDefault();
 
-        let userIndex = "";
+        let userIndex = undefined;
 
         for (let i = 0; i < existingUsers.length; i++) {
             if (existingUsers[i].username === username) {
@@ -25,7 +26,9 @@ const Login = () => {
             }
         }
 
-        if (!userIndex) {
+        console.log(!userIndex)
+
+        if (userIndex === undefined) {
             setUsernameError("The username does not exist");
         } else {
             setUsernameError("");
@@ -37,6 +40,8 @@ const Login = () => {
                 history.push("/");
             }
         }
+
+        if (userIndex === undefined && passwordError !== "") setPasswordError("");
     }
 
     return (

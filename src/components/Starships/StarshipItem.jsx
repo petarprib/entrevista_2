@@ -5,7 +5,7 @@ const StarshipItem = (props) => {
 
     return (
         <div>
-            <p className="starship">{starship.name}</p>
+            <p>{starship.name}</p>
         </div>
     );
 }

@@ -12,7 +12,7 @@ import ValidateRepeatedPassword from './helpers/ValidateRepeatedPassword';
 
 const Register = () => {
     let history = useHistory();
-    const [existingUsers] = useState(JSON.parse(localStorage.getItem("existingUsers") || "[]"))
+    const [existingUsers] = useState(JSON.parse(localStorage.getItem("existingUsers") || "[]"));
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [password, setPassword] = useState("");

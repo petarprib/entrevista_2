@@ -8,15 +8,7 @@ const StarshipList = () => {
 
     useEffect(() => {
         getAll()
-            .then(something => setStarships(something))
-            .then(() => {
-                let starshipItems = starships.map((starship, i) => (
-                    // return (
-                    // <StarshipItem key={i} starship={starship} />
-                    // );
-                    console.log(starship)
-                ));
-            })
+            .then(newStarships => setStarships(newStarships));
     }, []);
 
     let getAll = async () => {
@@ -33,23 +25,16 @@ const StarshipList = () => {
         return newStarships;
     }
 
-    // console.log(starships)
-
-    // let starshipItems = starships.map((starship, i) => (
-    //     // return (
-    //     // <StarshipItem key={i} starship={starship} />
-    //     // );
-    //     console.log(starship)
-    // ));
+    let starshipItems = starships.map((starship, i) => (
+        <StarshipItem key={i} starship={starship} />
+    ));
 
     if (!loggedUser) {
         return <Redirect to="/login" />
-    }
-    else {
+    } else {
         return (
             <div>
-                <p>ioujhdfiguhdjfg</p>
-                {/* {starships && { starshipItems }} */}
+                {starshipItems}
             </div>
         );
     }

@@ -16,7 +16,7 @@ const Login = () => {
     let handleSubmit = (e) => {
         e.preventDefault();
 
-        let userIndex;
+        let userIndex = "";
 
         for (let i = 0; i < existingUsers.length; i++) {
             if (existingUsers[i].username === username) {
@@ -25,7 +25,7 @@ const Login = () => {
             }
         }
 
-        if (!userIndex && username !== "") {
+        if (!userIndex) {
             setUsernameError("The username does not exist");
         } else {
             setUsernameError("");

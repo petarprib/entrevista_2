@@ -59,8 +59,8 @@ const Register = () => {
     }
 
     return (
-        <Row id="login">
-            <Col id="login-form" className="m-auto px-0" xs={10} sm={9} md={7} lg={5} xl={4}>
+        <Row id="register">
+            <Col className="m-auto px-0" xs={10} sm={9} md={7} lg={5} xl={4}>
                 <Form className="m-3" onSubmit={(e) => handleSubmit(e)}>
                     <Form.Group>
                         <Form.Control type="text" placeholder="Choose username"

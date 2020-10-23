@@ -7,11 +7,11 @@ const StarshipList = () => {
     const [starships, setStarships] = useState([]);
 
     useEffect(() => {
-        getAll()
+        getStarships()
             .then(newStarships => setStarships(newStarships));
     }, []);
 
-    let getAll = async () => {
+    let getStarships = async () => {
         let cont = true;
         let page = 1;
         let newStarships = [];
@@ -34,6 +34,7 @@ const StarshipList = () => {
     } else {
         return (
             <div>
+                <h1>Starships</h1>
                 {starshipItems}
             </div>
         );

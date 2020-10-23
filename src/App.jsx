@@ -6,6 +6,7 @@ import Header from './components/Header/Header.jsx';
 import Register from './components/Register/Register.jsx';
 import Login from './components/Login/Login.jsx';
 import StarshipList from './components/Starships/StarshipList.jsx';
+import CharacterList from './components/Characters/CharacterList.jsx';
 
 const App = () => {
   return (
@@ -14,8 +15,9 @@ const App = () => {
       <Container>
         <Switch>
           <Route path="/" exact component={StarshipList} />
-          <Route path="/register" component={Register} />
+          <Route path="/characters" component={CharacterList} />
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
       </Container>
     </Router>
